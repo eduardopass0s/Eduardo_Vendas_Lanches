@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sistema de Controle de Vendas de Lanches</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -21,72 +21,13 @@
             <th>Vender</th>
         </tr>
     </thead>
-    <tbody id="lanche-list">
-    </tbody>
+    <tbody id="lanche-list"></tbody>
 </table>
 
 <h2>Relatório de Vendas</h2>
 <p id="total-vendas">Total de Vendas: R$ 0.00</p>
 
-<script>
-
-    const lanches = [
-        {
-            nome: "X-Burger",
-            ingredientes: ["Pão", "Carne", "Queijo"],
-            preco: 12.50,
-            estoque: 10
-        },
-        {
-            nome: "X-Vegano",
-            ingredientes: ["Pão", "Alface", "Tomate"],
-            preco: 18.00,
-            estoque: 8
-        },
-        {
-            nome: "X-Burger Especial",
-            ingredientes: ["Pão", "Carne", "Queijo", "Ovo", "Frango"],
-            preco: 16.50,
-            estoque: 5
-        }
-    ];
-
-    let totalVendas = 0;
-
-    function exibirLanches() {
-        const lancheList = document.getElementById("lanche-list");
-        lancheList.innerHTML = '';
-
-        lanches.forEach((lanche, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${lanche.nome}</td>
-                <td>${lanche.ingredientes.join(", ")}</td>
-                <td>R$ ${lanche.preco.toFixed(2)}</td>
-                <td>${lanche.estoque}</td>
-                <td><button onclick="venderLanche(${index})" ${lanche.estoque <= 0 ? 'disabled' : ''}>Vender</button></td>
-            `;
-            lancheList.appendChild(row);
-        });
-    }
-
-    function venderLanche(index) {
-        const lanche = lanches[index];
-        
-        if (lanche.estoque > 0) {
-
-            lanche.estoque--;
-            totalVendas += lanche.preco;
-            
-   
-            exibirLanches();
-            document.getElementById("total-vendas").innerText = `Total de Vendas: R$ ${totalVendas.toFixed(2)}`;
-        } else {
-            alert("Estoque esgotado para este lanche!");
-        }
-    }
-    window.onload = exibirLanches;
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
